@@ -14,7 +14,7 @@
   function spanToText(span) {
     if (!span) return '';
     const clone = span.cloneNode(true);
-    clone.querySelectorAll('script, style, iframe, img, button, input, select, textarea, form, [role="button"]')
+    clone.querySelectorAll('script, style, iframe, img, button, input, select, textarea, form, [role="button"], .copytext_butt, .copytext_cont1')
       .forEach(el => el.remove());
     // Drop any leftover element whose whole text is just a site UI label
     [...clone.querySelectorAll('*')].reverse().forEach(el => {
