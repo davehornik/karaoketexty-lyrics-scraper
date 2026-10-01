@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "KaraokeTexty Lyrics Scraper",
+  "version": "1.0.0",
+  "description": "Stáhne čistý text písně (a případný překlad) z KaraokeTexty.cz bez reklam a uloží ho jako .txt",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.karaoketexty.cz/texty-pisni/*/*",
+        "https://karaoketexty.cz/texty-pisni/*/*"
+      ],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

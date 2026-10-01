@@ -1,0 +1,64 @@
+/* Stacked button group, bottom-right */
+#kls-btn-group {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.kls-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #ffb347;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.kls-btn:hover {
+  transform: translateY(-2px);
+  background: #f0a235;
+}
+
+.kls-btn:active {
+  transform: translateY(0);
+}
+
+.kls-btn svg {
+  flex-shrink: 0;
+}
+
+/* Toast notification */
+#kls-toast {
+  margin-bottom: 4px;
+  padding: 10px 18px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#kls-toast.kls-toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
