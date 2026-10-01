@@ -6,16 +6,25 @@
   const lyricsRoot = document.querySelector('.lyrics_cont');
   if (!lyricsRoot) return;
 
+  // Site UI strings that can end up inside the lyrics container (for logged-in
+  // users the site renders a "Kopíruj text" button and "Opravit text" link there).
+  const UI_TEXT = /^(kopíruj text|opravit text|je zde něco špatně\??|kopírovat|zkopírováno!?)$/i;
+
   // Turn one lyrics <span> into clean text: <br> -> newline, trimmed lines, no blank lines
   function spanToText(span) {
     if (!span) return '';
     const clone = span.cloneNode(true);
-    clone.querySelectorAll('script, style, iframe, img').forEach(el => el.remove());
+    clone.querySelectorAll('script, style, iframe, img, button, input, select, textarea, form, [role="button"]')
+      .forEach(el => el.remove());
+    // Drop any leftover element whose whole text is just a site UI label
+    [...clone.querySelectorAll('*')].reverse().forEach(el => {
+      if (UI_TEXT.test(el.textContent.replace(/\s+/g, ' ').trim())) el.remove();
+    });
     clone.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
     return clone.textContent
       .split('\n')
       .map(line => line.replace(/\s+/g, ' ').trim())
-      .filter(Boolean)
+      .filter(line => line && !UI_TEXT.test(line))
       .join('\n');
   }
 
